@@ -82,7 +82,7 @@ export const Input = ({ type = 'text', ...props }) => {
 
   // Render the styled input with appropriate handlers and postfix
   return (
-    <Wrapper>
+    <Wrapper inputType={type}>
       <StyledInput
         value={value}
         onChange={handleChange[type] || handleChange.default}
@@ -90,7 +90,6 @@ export const Input = ({ type = 'text', ...props }) => {
         disabled={disabled}
         {...props}
         type="text"
-        inputType={type}
       />
       <Postfix>{postfix}</Postfix>
     </Wrapper>

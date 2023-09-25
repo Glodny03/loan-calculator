@@ -6,6 +6,7 @@ const determineMaxWidth = (inputType) => {
 
 export const Wrapper = styled.div`
   position: relative;
+  max-width: ${({ inputType }) => determineMaxWidth(inputType)};
 `;
 
 export const StyledInput = styled.input`
@@ -15,9 +16,9 @@ export const StyledInput = styled.input`
   color: ${({ theme }) => theme.colors.black};
   font-size: ${({ theme }) => theme.fontSizes.l};
   font-weight: 500;
-  max-width: ${({ inputType }) => determineMaxWidth(inputType)};
+  max-width: 100%;
   outline: none;
-  padding: 22px 55px 22px 0;
+  padding: 12px 55px 12px 0;
   text-align: right;
 
   &:disabled {

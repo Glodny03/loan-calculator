@@ -7,7 +7,7 @@ export const Button = styled.button`
   border: none;
   font-weight: bold;
   cursor: pointer;
-  padding: 22px 32px;
+  padding: 12px 22px;
   transition: 0.4s;
 
   &:hover {
