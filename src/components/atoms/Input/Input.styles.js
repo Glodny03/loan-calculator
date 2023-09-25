@@ -18,7 +18,7 @@ export const StyledInput = styled.input`
   font-weight: 500;
   max-width: 100%;
   outline: none;
-  padding: 12px 55px 12px 0;
+  padding: 9px 55px 9px 0;
   text-align: right;
 
   &:disabled {
