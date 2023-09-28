@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-const determineMaxWidth = (inputType) => {
-  return inputType === 'months' || inputType === 'percentage' ? '97px' : 'auto';
+const determineMaxWidth = (postfix) => {
+  return postfix === '%' || postfix === 'mies.' ? '97px' : 'auto';
 };
 
 export const Wrapper = styled.div`
   position: relative;
-  max-width: ${({ inputType }) => determineMaxWidth(inputType)};
+  max-width: ${({ postfix }) => determineMaxWidth(postfix)};
 `;
 
 export const StyledInput = styled.input`

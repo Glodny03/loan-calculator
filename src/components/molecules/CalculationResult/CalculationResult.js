@@ -2,23 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Wrapper, InfoTitle, LoanInstallment } from './CalculationResult.styles';
 
-const CalculationResult = ({ value = 0 }) => {
-  return (
-    <Wrapper>
-      <InfoTitle>Twoja rata:</InfoTitle>
-      <LoanInstallment>
-        {value} <span>PLN/mies.</span>
-      </LoanInstallment>
-    </Wrapper>
-  );
-};
+// Component to display calculated loan installment amount
+const CalculationResult = ({ value }) => (
+  <Wrapper>
+    <InfoTitle>Twoja rata:</InfoTitle>
+    <LoanInstallment>
+      {value} <span>PLN/mies.</span>
+    </LoanInstallment>
+  </Wrapper>
+);
 
+// Prop type definitions
 CalculationResult.propTypes = {
-  value: PropTypes.number,
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
+// Default prop values
 CalculationResult.defaultProps = {
-  value: 0,
+  value: '0',
 };
 
 export default CalculationResult;
