@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const StyledSlider = styled.input.attrs({ type: 'range' })`
   width: 100%;
-  appearance: none; 
+  appearance: none;
   height: 7px;
   background-color: ${({ theme }) => theme.colors.lightBrown};
   border-radius: 4px;

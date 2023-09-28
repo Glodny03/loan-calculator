@@ -20,6 +20,10 @@ export const Title = styled.h2`
 export const InfoWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: 490px) {
+    flex-direction: column;
+  }
 `;
 
 export const Description = styled.p`

@@ -14,6 +14,10 @@ html {
 
 body {
     font-family: "Montserrat", sans-serif;
+
+    @media (min-width: 577px) {
+        font-size: 16px; /* Adjust for tablets */
+    }
 }
 
 a, button, span, input {

@@ -21,6 +21,11 @@ export const StyledInput = styled.input`
   padding: 9px 55px 9px 0;
   text-align: right;
 
+  @media (max-width: 490px) {
+    width: 100%;
+    margin-top: 15px;
+  }
+
   &:disabled {
     border-color: ${({ theme }) => theme.colors.lightPurple};
     color: ${({ theme }) => theme.colors.lightPurple};
@@ -38,4 +43,8 @@ export const Postfix = styled.span`
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
+
+  @media (max-width: 490px) {
+    transform: translateY(0);
+  }
 `;

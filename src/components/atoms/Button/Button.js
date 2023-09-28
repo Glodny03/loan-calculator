@@ -14,4 +14,8 @@ export const Button = styled.button`
     background-color: ${({ theme }) => theme.colors.darkBrown};
     color: ${({ theme }) => theme.colors.brown};
   }
+
+  @media (max-width: 576px) {
+    padding: 14px 24px;
+  }
 `;

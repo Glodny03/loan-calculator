@@ -58,7 +58,7 @@ const Calculator = () => {
         min={MIN_LOAN_TERM}
         max={MAX_LOAN_TERM}
       />
-      <ParameterSection title="Oprocentowanie" description="Roczna stopa procentowa" inputType="percentage" value={INTEREST_RATE * 100} percentage />
+      <ParameterSection title="Oprocentowanie" description="Roczna stopa procentowa" inputType="percentage" value={INTEREST_RATE} percentage />
 
       <CalculationResult value={'1 452,23'} />
       <Button>Złóż wniosek</Button>

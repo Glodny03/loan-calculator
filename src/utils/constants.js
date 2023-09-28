@@ -1,4 +1,4 @@
-export const INTEREST_RATE = 0.06;
+export const INTEREST_RATE = 6;
 
 export const DEFAULT_LOAN_AMOUNT = 100000;
 export const DEFAULT_DOWN_PAYMENT = 0;
