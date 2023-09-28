@@ -7,7 +7,7 @@ export const Select = styled.select`
   text-align: right;
   border-radius: 8px;
   color: #333;
-  appearance: none; // Usuwa standardowy wygląd dla niektórych przeglądarek
+  appearance: none;
   background-color: #fff;
   font-weight: 500;
   color: ${({ theme }) => theme.colors.black};
@@ -19,7 +19,7 @@ export const Select = styled.select`
     width: 100%;
     margin-top: 15px;
   }
-  
+
   &:focus {
     outline: none;
   }
@@ -40,7 +40,6 @@ export const Postfix = styled.span`
   cursor: pointer;
   pointer-events: none;
 
-  
   @media (max-width: 490px) {
     transform: translateY(0);
   }

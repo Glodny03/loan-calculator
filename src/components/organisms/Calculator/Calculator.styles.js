@@ -10,13 +10,3 @@ export const Wrapper = styled.div`
     width: 90vw;
   }
 `;
-
-// to remove
-export const ValueHelper = styled.div`
-  position: fixed;
-  left: 0;
-  right: 0;
-  padding: 10px;
-  border: 1px solid black;
-  max-width: 230px;
-`;

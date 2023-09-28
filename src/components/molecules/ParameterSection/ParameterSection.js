@@ -2,25 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Input from 'components/atoms/Input/Input';
 import { Slider } from 'components/atoms/Slider/Slider';
-import { Description, InfoWrapper, Title, Wrapper } from './ParameterSection.styles'; // Dodaj StyledSelect
-import { formatToStorage } from 'utils/inputFormatters';
+import { Description, InfoWrapper, Title, Wrapper } from './ParameterSection.styles';
 import RadioButtonGroup from './RadioButtonGroup/RadioButtonGroup';
 import { Postfix, Select, SelectWrapper } from 'components/atoms/Select/Select';
+import { formatToStorage } from 'utils/inputFormatters';
 
 const ParameterSection = ({
   title,
-  description,
+  description = null, // Default values can be set here
   value,
   onChange,
   onBlur,
-  min,
-  max,
-  postfix,
-  disabled,
-  percentage,
-  radioButtons,
-  onRadioChange,
-  inputType,
+  min = 0,
+  max = 100,
+  postfix = null,
+  disabled = false,
+  percentage = false,
+  radioButtons = null,
+  onRadioChange = () => {},
+  inputType = 'text',
 }) => (
   <Wrapper>
     <InfoWrapper>
@@ -30,6 +30,7 @@ const ParameterSection = ({
         {radioButtons && <RadioButtonGroup radioButtons={radioButtons} onRadioChange={onRadioChange} />}
       </div>
 
+      {/* Conditionally render Select or Input based on inputType */}
       {inputType === 'select' ? (
         <SelectWrapper>
           <Select value={value} onChange={onChange} onBlur={onBlur}>
@@ -48,11 +49,12 @@ const ParameterSection = ({
       )}
     </InfoWrapper>
 
+    {/* Render Slider if not in percentage mode */}
     {!percentage && <Slider min={min} max={max} value={formatToStorage(value)} onChange={onChange} />}
   </Wrapper>
 );
 
-// Prop type definitions
+// Prop types definitions
 ParameterSection.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
@@ -72,20 +74,7 @@ ParameterSection.propTypes = {
     }),
   ),
   onRadioChange: PropTypes.func,
-  inputType: PropTypes.string, // Dodaj prop type dla inputType
-};
-
-// Default prop values
-ParameterSection.defaultProps = {
-  description: null,
-  min: 0,
-  max: 100,
-  postfix: null,
-  disabled: false,
-  percentage: false,
-  radioButtons: null,
-  onRadioChange: () => {},
-  inputType: 'text', // Dodaj domyślną wartość dla inputType
+  inputType: PropTypes.oneOf(['text', 'select']), // Improved prop type for inputType
 };
 
 export default ParameterSection;
