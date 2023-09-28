@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ParameterSection from 'components/molecules/ParameterSection/ParameterSection';
 import CalculationResult from 'components/molecules/CalculationResult/CalculationResult';
-import { Wrapper } from './Calculator.styles';
+import { ValueHelper, Wrapper } from './Calculator.styles';
 import { formatToDisplay, formatToStorage, formatValue } from 'utils/inputFormatters';
 import {
+  AVAILABLE_LOAN_TERMS,
   DEFAULT_AMOUNT_TYPE,
   DEFAULT_DOWN_PAYMENT,
   DEFAULT_LOAN_AMOUNT,
@@ -15,6 +16,7 @@ import {
   MIN_LOAN_TERM,
 } from 'utils/constants';
 import Button from 'components/atoms/Button/Button';
+import { calculateMonthlyRate } from 'utils/calculations';
 
 // Main calculator component, responsible for calculating and displaying loan-related parameters
 const Calculator = () => {
@@ -24,17 +26,35 @@ const Calculator = () => {
   const [loanTerm, setLoanTerm] = useState(DEFAULT_LOAN_TERM || 0);
   const [priceType, setPriceType] = useState(DEFAULT_AMOUNT_TYPE);
 
+  const [monthlyRate, setMonthlyRate] = useState(0);
+
   // Handlers for input and radio button changes and blurs
   const handleRadioChange = (type) => setPriceType(type);
   const handleLoanAmountChange = (e) => setLoanAmount(formatToStorage(e.target.value));
   const handleLoanAmountBlur = (e) => setLoanAmount(formatValue(MIN_LOAN_AMOUNT, MAX_LOAN_AMOUNT, formatToStorage(e.target.value)));
   const handleSelfDepositChange = (e) => setSelfDeposit(formatToStorage(e.target.value));
   const handleSelfDepositBlur = (e) => setSelfDeposit(formatValue(DEFAULT_DOWN_PAYMENT, 10000, formatToStorage(e.target.value)));
-  const handleLoanTermChange = (e) => setLoanTerm(e.target.value);
+  const handleLoanTermChange = (e) => {
+    const inputValue = parseInt(e.target.value);
+    const roundedValue = AVAILABLE_LOAN_TERMS.reduce((prev, curr) => (Math.abs(curr - inputValue) < Math.abs(prev - inputValue) ? curr : prev));
+    setLoanTerm(roundedValue);
+  };
   const handleLoanTermBlur = (e) => setLoanTerm(formatValue(MIN_LOAN_TERM, MAX_LOAN_TERM, e.target.value));
+
+  useEffect(() => {
+    const calculatedRate = calculateMonthlyRate(loanAmount, selfDeposit, loanTerm, INTEREST_RATE);
+    setMonthlyRate(calculatedRate);
+  }, [loanAmount, selfDeposit, loanTerm]);
 
   return (
     <Wrapper>
+      <ValueHelper>
+        <p>LoanAmount: {loanAmount}</p>
+        <p>selfDeposit: {selfDeposit}</p>
+        <p>loanTerm: {loanTerm}</p>
+        <p>priceType: {priceType}</p>
+      </ValueHelper>
+
       <ParameterSection
         title="Kwota kredytu"
         postfix="PLN"
@@ -64,14 +84,13 @@ const Calculator = () => {
         title="Okres kredytu"
         postfix="mies."
         description="(24 - 60 mies.)"
-        inputType="months"
+        inputType="select" // <-- tu ustawiamy typ na select
         value={loanTerm}
         onChange={handleLoanTermChange}
         onBlur={handleLoanTermBlur}
         min={MIN_LOAN_TERM}
         max={MAX_LOAN_TERM}
       />
-
       <ParameterSection
         postfix="%"
         disabled
@@ -82,7 +101,7 @@ const Calculator = () => {
         percentage
       />
 
-      <CalculationResult value={'1 452,23'} />
+      <CalculationResult value={monthlyRate < 443206.1 && monthlyRate > 0 ? formatToDisplay(monthlyRate.toFixed(2)) : 443206.1} />
       <Button>Złóż wniosek</Button>
     </Wrapper>
   );

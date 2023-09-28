@@ -8,8 +8,8 @@ const RadioButtonGroup = ({ radioButtons, onRadioChange }) => (
     {radioButtons.map((radio) => (
       <label key={radio.value}>
         <input type="radio" value={radio.value} checked={radio.checked} onChange={() => onRadioChange(radio.value)} />
-        <span></span>
-        {radio.label}
+        <span>
+        {radio.label}</span>
       </label>
     ))}
   </RadioWrapper>

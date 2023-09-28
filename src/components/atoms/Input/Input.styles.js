@@ -43,6 +43,7 @@ export const Postfix = styled.span`
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
+  pointer-events: none;
 
   @media (max-width: 490px) {
     transform: translateY(0);

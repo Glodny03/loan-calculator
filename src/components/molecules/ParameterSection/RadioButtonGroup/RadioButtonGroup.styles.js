@@ -12,6 +12,10 @@ export const RadioWrapper = styled.div`
     margin-right: 15px;
   }
 
+  & span {
+    cursor: pointer;
+  }
+
   & input[type='radio'] {
     margin-right: 5px;
     appearance: none;
@@ -23,6 +27,7 @@ export const RadioWrapper = styled.div`
     background-color: white;
     position: relative;
     transition: background 0.2s ease;
+    cursor: pointer;
 
     &:before {
       content: '';

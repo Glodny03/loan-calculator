@@ -20,7 +20,7 @@ body {
     }
 }
 
-a, button, span, input {
+a, button, span, input, select {
     font-family: 'Montserrat', sans-serif;
 }
 `;
