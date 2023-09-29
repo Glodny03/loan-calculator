@@ -16,7 +16,6 @@ import {
   MIN_LOAN_AMOUNT,
   MIN_LOAN_TERM,
 } from 'utils/constants';
-import Button from 'components/atoms/Button/Button';
 import { calcMinDownPaymentPercentage, calculateMonthlyRate } from 'utils/calculations';
 
 const Calculator = () => {
@@ -117,7 +116,6 @@ const Calculator = () => {
       {/* Monthly Rate Display */}
       <CalculationResult value={displayMonthlyRate} />
 
-      <Button>Złóż wniosek</Button>
     </Wrapper>
   );
 };
