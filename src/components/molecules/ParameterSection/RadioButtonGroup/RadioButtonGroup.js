@@ -6,12 +6,7 @@ const RadioButtonGroup = ({ radioButtons, onRadioChange }) => (
   <RadioWrapper>
     {radioButtons.map(({ value, checked, label }) => (
       <label key={value}>
-        <input 
-          type="radio" 
-          value={value} 
-          checked={checked} 
-          onChange={() => onRadioChange(value)} 
-        />
+        <input type="radio" value={value} checked={checked} onChange={() => onRadioChange(value)} />
         <span>{label}</span>
       </label>
     ))}
@@ -25,7 +20,7 @@ RadioButtonGroup.propTypes = {
       value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
       checked: PropTypes.bool.isRequired,
       label: PropTypes.string.isRequired,
-    })
+    }),
   ).isRequired,
   onRadioChange: PropTypes.func.isRequired,
 };

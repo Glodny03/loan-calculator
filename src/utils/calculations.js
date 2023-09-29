@@ -15,10 +15,12 @@ export const calcMinDownPaymentPercentage = (loanTerm) => {
 };
 
 export const calculateMonthlyRate = (loanAmount, selfDeposit, loanTerm, interestRate, priceType) => {
-  const P = loanAmount - selfDeposit; // Principle after down payment
-  const r = interestRate / 12 / 100; // Monthly interest rate
+  const principalAfterDownPayment = loanAmount - selfDeposit;
+  const monthlyInterestRate = interestRate / 12 / 100;
 
-  let result = (P * r * Math.pow(1 + r, loanTerm)) / (Math.pow(1 + r, loanTerm) - 1);
+  let result =
+    (principalAfterDownPayment * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, loanTerm)) /
+    (Math.pow(1 + monthlyInterestRate, loanTerm) - 1);
 
   if (priceType === 'brutto') {
     result += result * (VAT_PERCENTAGE / 100); // Applying VAT for 'brutto'

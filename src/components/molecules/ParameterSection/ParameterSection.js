@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Input from 'components/atoms/Input/Input';
+import RadioButtonGroup from './RadioButtonGroup/RadioButtonGroup';
 import { Slider } from 'components/atoms/Slider/Slider';
 import { Description, InfoWrapper, Title, Wrapper } from './ParameterSection.styles';
-import RadioButtonGroup from './RadioButtonGroup/RadioButtonGroup';
 import { Postfix, Select, SelectWrapper } from 'components/atoms/Select/Select';
 import { formatToStorage } from 'utils/inputFormatters';
 
@@ -14,7 +14,7 @@ const ParameterSection = ({
   onChange,
   onBlur,
   min = 0,
-  max = 100,
+  max = 0,
   postfix = null,
   disabled = false,
   percentage = false,
