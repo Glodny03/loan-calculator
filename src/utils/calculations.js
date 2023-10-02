@@ -28,3 +28,6 @@ export const calculateMonthlyRate = (loanAmount, selfDeposit, loanTerm, interest
 
   return result;
 };
+
+
+
