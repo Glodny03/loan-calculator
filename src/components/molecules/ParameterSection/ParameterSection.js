@@ -6,6 +6,7 @@ import { Slider } from 'components/atoms/Slider/Slider';
 import { Description, InfoWrapper, Title, Wrapper } from './ParameterSection.styles';
 import { Postfix, Select, SelectWrapper } from 'components/atoms/Select/Select';
 import { formatToStorage } from 'utils/inputFormatters';
+import { AVAILABLE_LOAN_TERMS } from 'utils/constants';
 
 const ParameterSection = ({
   title,
@@ -34,13 +35,15 @@ const ParameterSection = ({
       {inputType === 'select' ? (
         <SelectWrapper>
           <Select value={value} onChange={onChange} onBlur={onBlur}>
-            {min &&
-              max &&
-              Array.from({ length: (max - min) / 12 + 1 }, (_, i) => min + i * 12).map((term) => (
-                <option key={term} value={term}>
-                  {term}
-                </option>
-              ))}
+              {
+               AVAILABLE_LOAN_TERMS.length > 0 && (
+                AVAILABLE_LOAN_TERMS.map((term) => (
+                  <option key={term} value={term}>
+                    {term}
+                  </option>
+                ))
+               )
+              }
           </Select>
           {postfix && <Postfix>{postfix}</Postfix>}
         </SelectWrapper>
